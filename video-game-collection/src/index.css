@@ -1,3 +1,151 @@
+/* NAVBAR */
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 16px 0;
+
+  background-color: #1e1e1e;
+
+  border-bottom: 2px solid #333;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+/* normal links */
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  font-size: 0.95rem;
+
+  transition: color 0.2s ease;
+}
+
+/* hover */
+
+.nav-links a:hover {
+  color: #bbbbbb;
+}
+
+/* active page */
+
+.nav-links a.active {
+  color: #4da6ff;
+  border-bottom: 2px solid #4da6ff;
+  padding-bottom: 3px;
+}
+
+/* LOGIN PAGE LAYOUT */
+
+.login-page {
+  min-height: calc(100vh - 70px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* LOGIN FORM */
+
+.login-form {
+  width: 100%;
+  max-width: 400px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding: 30px;
+
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+  background-color: white;
+}
+
+/* FORM GROUP */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group input {
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.login-form button {
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/*Landing Page*/
+
+.landing-page {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.hero {
+  max-width: 700px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #444;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.hero-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #222;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.hero-button:hover {
+  background-color: #444;
+}
+
+.secondary-button {
+  background-color: #e5e5e5;
+  color: #222;
+}
+
+.secondary-button:hover {
+  background-color: #d5d5d5;
+}
+
 .game-card {
   display: flex;
   align-items: center;

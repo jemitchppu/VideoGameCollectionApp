@@ -1,30 +1,25 @@
-import { useEffect, useState } from "react";
-import GameCard from "./components/GameCard";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import LandingPage from "./pages/LandingPage";
+import CatalogPage from "./pages/CatalogPage";
+import OwnedPage from "./pages/OwnedPage";
+import WishlistPage from "./pages/WishlistPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
-  const [games, setGames] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/games")
-    .then((response) => response.json())
-    .then((data) => {
-      setGames(data);
-    })
-    .catch((error) => {
-      console.error("Error fetching games:", error);
-    });
-  }, []);
-
   return (
-  <div>
-    <h1>Video Game Collection</h1>
+    <div>
+      <Navbar />
 
-    {games.map((game) => (
-          <GameCard key={game.game_id} game={game} />
-    ))}
-  </div>
-);
-
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/catalog" element={<CatalogPage />} />
+        <Route path="/owned" element={<OwnedPage />} />
+        <Route path="/wishlist" element={<WishlistPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;
