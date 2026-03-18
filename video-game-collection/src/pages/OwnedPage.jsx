@@ -1,8 +1,9 @@
-function OwnedPage() {
+function OwnedPage({ user }) {
   return (
-    <div>
-      <h1>Owned Games</h1>
-      <p>View the games you already own.</p>
+    <div className="page-container">
+      <h1>
+        {user ? `${user.name}'s Owned Games` : "Owned Games"}
+      </h1>
     </div>
   );
 }

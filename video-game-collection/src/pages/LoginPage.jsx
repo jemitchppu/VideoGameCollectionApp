@@ -1,13 +1,47 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function LoginPage() {
+function LoginPage({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [serverError, setServerError] = useState("");
 
-  function handleLogin(event) {
+  const navigate = useNavigate();
+
+  const isValid =
+    email.trim() !== "" &&
+    password.trim() !== "";
+
+  async function handleLogin(event) {
     event.preventDefault();
 
-    console.log("Login submitted:", { email, password });
+    if (!isValid) return;
+
+    setServerError("");
+
+    try {
+      const response = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setServerError(data.message);
+        return;
+      }
+
+      setUser(data.user);
+      navigate("/owned");
+
+    } catch (error) {
+      console.error("Login error:", error.message);
+      setServerError("Something went wrong. Please try again.");
+    }
   }
 
   return (
@@ -22,7 +56,10 @@ function LoginPage() {
             type="email"
             value={email}
             autoFocus
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={(event) => {
+              setEmail(event.target.value);
+              setServerError("");
+            }}
             placeholder="Enter your email"
           />
         </div>
@@ -33,12 +70,27 @@ function LoginPage() {
             id="password"
             type="password"
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            onChange={(event) => {
+              setPassword(event.target.value);
+              setServerError("");
+            }}
             placeholder="Enter your password"
           />
         </div>
 
-        <button type="submit">Login</button>
+        {serverError && (
+          <p className="error-text">{serverError}</p>
+        )}
+
+        <button type="submit" disabled={!isValid}>
+          Login
+        </button>
+
+        <div className="form-group">
+          <span>
+            Don't have an account? <Link to="/register">Create one</Link>
+          </span>
+        </div>
       </form>
     </div>
   );
