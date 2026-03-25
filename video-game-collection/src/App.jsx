@@ -6,6 +6,7 @@ import OwnedPage from "./pages/OwnedPage";
 import WishlistPage from "./pages/WishlistPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 import { useState } from "react";
 
 function App() {
@@ -19,8 +20,22 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/catalog" element={<CatalogPage />} />
-        <Route path="/owned" element={<OwnedPage user={user} />} />
-        <Route path="/wishlist" element={<WishlistPage />} />
+      <Route
+        path="/owned"
+        element={
+          <ProtectedRoute user={user}>
+            <OwnedPage user={user} />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/wishlist"
+        element={
+          <ProtectedRoute user={user}>
+            <WishlistPage />
+          </ProtectedRoute>
+        }
+      />
         <Route path="/login" element={<LoginPage setUser={setUser} />} />
         <Route path="/register" element={<RegisterPage />} />
       </Routes>
